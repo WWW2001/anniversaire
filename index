@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon Anniversaire</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f8e8ff;
+    padding: 30px;
+}
+.card {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+.cadeau {
+    background: #f4f4f4;
+    margin: 8px;
+    padding: 10px;
+    border-radius: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h1>🎉 Invitation à mon anniversaire 🎉</h1>
+
+    <p><strong>Date :</strong> 15 juin 2027</p>
+    <p><strong>Heure :</strong> 19h00</p>
+    <p><strong>Lieu :</strong> Chez moi</p>
+
+    <h2>🎁 Idées de cadeaux</h2>
+
+    <div class="cadeau">📚 Livre</div>
+    <div class="cadeau">🎫 Carte cadeau</div>
+    <div class="cadeau">🌱 Plante</div>
+    <div class="cadeau">🎵 Place de concert</div>
+
+    <h2>✅ RSVP</h2>
+
+    <anadresse@email.com?subject=Confirmation anniversaire
+        Je participe !
+    </a>
+</div>
+
+</body>
+</html>
