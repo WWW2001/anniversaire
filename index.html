@@ -2,53 +2,192 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mon Anniversaire</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invitation Anniversaire</title>
+
 <style>
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: #f8e8ff;
-    padding: 30px;
+body{
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#f7e7ff,#e7f0ff);
+    margin:0;
+    padding:20px;
 }
-.card {
-    max-width: 700px;
-    margin: auto;
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+
+.container{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
 }
-.cadeau {
-    background: #f4f4f4;
-    margin: 8px;
-    padding: 10px;
-    border-radius: 10px;
+
+h1,h2{
+    text-align:center;
+}
+
+.info{
+    text-align:center;
+    font-size:20px;
+    line-height:1.8;
+}
+
+.countdown{
+    text-align:center;
+    font-size:32px;
+    font-weight:bold;
+    color:#8e44ad;
+    margin:25px 0;
+}
+
+.gift{
+    background:#f4f4f4;
+    margin:10px 0;
+    padding:18px;
+    border-radius:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.gift:hover{
+    background:#e8e8e8;
+}
+
+.reserved{
+    background:#a8f0b0;
+}
+
+button{
+    background:#27ae60;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#219150;
+}
+
+.center{
+    text-align:center;
+}
+
+.participants{
+    text-align:center;
+    font-size:24px;
+    margin-top:20px;
 }
 </style>
 </head>
+
 <body>
 
-<div class="card">
-    <h1>🎉 Invitation à mon anniversaire 🎉</h1>
+<div class="container">
 
-    <p><strong>Date :</strong> 15 juin 2027</p>
-    <p><strong>Heure :</strong> 19h00</p>
-    <p><strong>Lieu :</strong> Chez moi</p>
+<h1>🎉 Invitation à mon anniversaire 🎉</h1>
 
-    <h2>🎁 Idées de cadeaux</h2>
-
-    <div class="cadeau">📚 Livre</div>
-    <div class="cadeau">🎫 Carte cadeau</div>
-    <div class="cadeau">🌱 Plante</div>
-    <div class="cadeau">🎵 Place de concert</div>
-
-    <h2>✅ RSVP</h2>
-
-    <anadresse@email.com?subject=Confirmation anniversaire
-        Je participe !
-    </a>
+<div class="info">
+<p><strong>Date :</strong> 15 juin 2027</p>
+<p><strong>Heure :</strong> 19h00</p>
+<p><strong>Lieu :</strong> Chez moi</p>
 </div>
+
+<div id="countdown" class="countdown"></div>
+
+<h2>🎁 Idées de cadeaux</h2>
+
+<div class="gift" onclick="reserver(this)">
+📚 Livre
+</div>
+
+<div class="gift" onclick="reserver(this)">
+🎫 Carte cadeau
+</div>
+
+<div class="gift" onclick="reserver(this)">
+🌱 Plante
+</div>
+
+<div class="gift" onclick="reserver(this)">
+🎵 Place de concert
+</div>
+
+<h2>✅ RSVP</h2>
+
+<div class="center">
+<button onclick="participer()">
+Je participe 🎉
+</button>
+</div>
+
+<div class="participants">
+Participants enregistrés : <span id="compteur">0</span>
+</div>
+
+</div>
+
+<script>
+
+let participants =
+localStorage.getItem("participants") || 0;
+
+document.getElementById("compteur").innerText =
+participants;
+
+function participer(){
+    participants++;
+    localStorage.setItem("participants",participants);
+    document.getElementById("compteur").innerText =
+    participants;
+
+    alert("Merci pour votre confirmation 🎉");
+}
+
+function reserver(element){
+
+    if(element.classList.contains("reserved")){
+        element.classList.remove("reserved");
+        element.innerHTML =
+        element.innerHTML.replace(" ✅ Réservé","");
+    } else {
+        element.classList.add("reserved");
+        element.innerHTML += " ✅ Réservé";
+    }
+}
+
+const anniversaire =
+new Date("2027-06-15T19:00:00");
+
+function updateCountdown(){
+
+    const now = new Date();
+    const diff = anniversaire - now;
+
+    if(diff < 0){
+        document.getElementById("countdown")
+        .innerHTML = "🎂 C'est aujourd'hui !";
+        return;
+    }
+
+    const jours =
+    Math.floor(diff/(1000*60*60*24));
+
+    const heures =
+    Math.floor((diff%(1000*60*60*24))
+    /(1000*60*60));
+
+    document.getElementById("countdown")
+    .innerHTML =
+    `⏳ ${jours} jours et ${heures} heures`;
+}
+
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+</script>
 
 </body>
 </html>
